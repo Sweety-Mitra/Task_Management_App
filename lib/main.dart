@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'providers/task_provider.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +12,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => TaskProvider(),
-      child: MaterialApp(home: HomeScreen()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+
+        theme: ThemeData(
+          primarySwatch: Colors.indigo,
+          scaffoldBackgroundColor: Colors.grey[100],
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.indigo,
+            foregroundColor: Colors.white,
+            elevation: 0,
+          ),
+        ),
+
+        home: HomeScreen(),
+      ),
     );
   }
 }

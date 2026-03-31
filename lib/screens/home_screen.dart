@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/task_provider.dart';
+import '../widgets/task_card.dart';
 import 'add_edit_task.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -78,6 +79,24 @@ class HomeScreen extends StatelessWidget {
                           isBlocked = true;
                         }
                       }
+
+                      return TaskCard(
+                        task: task,
+                        isBlocked: isBlocked,
+                        onEdit: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => AddEditTask(
+                                index: index,
+                                task: task,
+                              ),
+                            ),
+                          );
+                        },
+                        onDelete: () =>
+                            provider.deleteTask(index),
+                      );
                     },
                   ),
           ),
